@@ -34,6 +34,10 @@ See this tutorial on [how to add a target](https://help.probely.com/en/articles/
 Add the following to your drone config (.drone.yml):
 
 ```yml
+kind: pipeline
+type: docker
+name: default
+
 steps:
 - name: probely-scan
   image: probely/drone-io:latest
@@ -48,6 +52,30 @@ steps:
  - **target-id**: Probely's identifier of the target to scan
  - **region**: Probely's region where your account is hosted
  - **scan-profile**: The scan profile to use in the scan. If not defined, the scan profile will be the one defined in the target settings.
+
+
+Or using secrets:
+
+```yml
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: probely
+  image: probely/drone-io:latest
+  environment:
+    PLUGIN_API_KEY:
+      from_secret: p_api_key
+    PLUGIN_TARGET_ID:
+      from_secret: p_target_id
+    PLUGIN_REGION:
+      from_secret: p_region
+    PLUGIN_SCAN_PROFILE:
+      from_secret: p_scan_profile
+```
+
+![Secrets Example](/assets/secrets.png?raw=true)
 
 ## Contact Us
 

@@ -3,6 +3,6 @@ kind: Component
 metadata:
   name: drone-io
 spec:
-  type: internal-tooling
+  type: external-tooling
   lifecycle: "-"
   owner: probely-engine
